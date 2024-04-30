@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUPORTE FDS</title>
+<link rel="stylesheet" href="css.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+
+        /*O ESTILO ABAIXO FOI COLOCADO AQUI NO INDEX PORQUE OS CARDS SÃO GERADOS POR UM SCRIPT JS EXTERNO, E O CSS NÃO ESTAVA ENCONTRANDO OS
+        ELEMENTOS DURANTE O CARREGAMENTO. PORTANTO, ESSE FOI O TAPA-BURACO POR ORA.*/
+
+        .card {
+        width: 100%;
+        height: 150px; /* Defina a altura desejada para os cards */
+        cursor: pointer;
+        background-color: rgb(175, 175, 175);
+        border-radius: 25px;
+    }
+    .tamanho_cards img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Garante que a imagem cubra completamente o container, mantendo a proporção */
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+    }
+    .overlay.active {
+        display: block;
+    }
+    .popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;  
+        border-radius: 5px;
+        z-index: 10000;
+        align-items: center;
+    }
+    .card:hover {
+        background-color: #16a522;
+    }
+    .border-div-main {
+    border: 1px solid #000; /* largura, estilo e cor da borda */
+    padding: 20px; /* opcional: adicione um preenchimento interno para melhor visualização */
+    width: block;
+    border-radius: 50px;
+}
+
+
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+
+    <header>
+        <nav class="nav nav-pills flex-column flex-sm-row bg-light">
+            <a class="flex-sm-fill text-sm-center nav-link menu" href="#" class="menu" aria-current="page" data-menu="financiamento">Calculadora de Financiamentos</a>
+            <a class="flex-sm-fill text-sm-center nav-link menu" href="#" class="menu" data-menu="automotivo">Calculadora de Consumo Automotivo</a>
+            <a class="flex-sm-fill text-sm-center nav-link menu" href="#" class="menu" data-menu="ar-condicionado">Calculadora de Consumo Ar-Condicionado</a>
+            <a class="flex-sm-fill text-sm-center nav-link menu" href="#" class="menu" data-menu="outros1">Outros</a>
+        </nav>  
+    </header>
+    
+    <main>
+
+        <!-- PÁGINA SITES (DEFAULT) -->
+        <div id="financiamento" class="conteudo active">
+            
+            <h1>Calculadora de Financiamento</h1>
+            <p style="text-align: center;">Os bancos se baseam nesse cálculo para cobrança de financiamentos.</p>
+
+                <div class="calculator">
+                    <input type="number" id="valorFinanciado" placeholder="Valor Financiado">
+                    <input type="number" id="taxaJuros" placeholder="Taxa de Juros (%)">
+                    <input type="number" id="valorEntrada" placeholder="Valor de Entrada">
+                    <input type="number" id="quantidadeMeses" placeholder="Quantidade de Meses">
+                    <input type="button" value="Valor da Parcela" onclick="calcularJuros()">
+                    <input type="text" id="resultado" placeholder="Resultado" readonly>
+                </div>
+        </div>
+        
+        <!-- PÁGINA PROVEDORES ESPORTE -->
+        <div id="automotivo" class="conteudo">
+            <h1>Calculadora de Consumo Automotivo</h1>
+            <!-- >>>>>>>>>>>>> CONTEÚDO <<<<<<<<<<<<<<< -->
+            <div class="calculator">
+            
+                
+                <p>Calcule o gasto que você terá com combustível na sua viagem.</p>
+                
+                <label for="distancia" class="format-login-registro">Digite a distância que vai percorrer(km):</label><br>
+                <input type="number" name="distancia" id="distancia" class="form-control" required>
+            
+            
+                <label for="combustivel" class="format-login-registro">Valor do combustível(preço do litro):</label><br>
+                <input type="text" name="combustivel" id="combustivel" class="form-control" oninput="formatarPreco(this)" maxlength="5" required>
+            
+            
+                <label for="consumo" class="format-login-registro">Consumo do veículo(km/l):</label><br> 
+                <input type="text" name="consumo" id="consumo" class="form-control" oninput="formatarPreco(this)" maxlength="5" required>
+            
+                <input type="button" class="" value="Calcular" onclick="calcombust()">
+                
+                <h3>O custo com combustível será de R$ </h3>
+                <input type="number" id="result" value="result"> 
+                                    
+        
+                               
+        
+        
+                               
+        
+
+
+            </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA TNS -->
+        <div id="ar-condicionado" class="conteudo">
+            <h1>Calculadora de consumo de ar-condicionado</h1>
+            <!-- >>>>>>>>>>>>> CONTEÚDO <<<<<<<<<<<<<<< -->
+            <div class="calculator">
+                Quantidade de horas diária de uso: <br>
+                <input type="number" id="horas" > 
+                <br>
+                Quantidade de dias de uso no mês: <br>
+                <input type="number" id="dias" >
+                <br>
+                Quantos kW/h consome o seu Ar-Condicionado: <br>
+                <input type="number" id="kwh" value="727" >
+                <br>
+                Tarifa de energia: <br>
+                <input type="number" id="tarifa" value="0.54" >
+                <br>
+                <input type="button" id="button" value="Calcular" onclick="calc()"> <br>
+                <br>
+                <b>Custo mês</b><br>
+                <input type="number" id="result" value="result"> 
+                <!--<div id="result"></div>-->
+            </div>
+        </div>
+
+        <!-- PÁGINA EXEMPLO 1 -->
+        <div id="outro1" class="conteudo">
+            <h1>Outros</h1>
+
+            <!-- >>>>>>>>>>>>> CONTEÚDO <<<<<<<<<<<<<<< -->
+
+        </div>
+
+        <!-- PÁGINA EXEMPLO 2 -->
+        <div id="outro2" class="conteudo">
+            <h1>Lista de Sites</h1>
+
+            <!-- >>>>>>>>>>>>> CONTEÚDO <<<<<<<<<<<<<<< -->
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const menus = document.querySelectorAll('.menu');
+        const conteudos = document.querySelectorAll('.conteudo');
+
+        menus.forEach(menu => {
+            menu.addEventListener('click', function() {
+                const menuSelecionado = this.getAttribute('data-menu');
+                conteudos.forEach(conteudo => {
+                    if (conteudo.id === menuSelecionado) {
+                        conteudo.classList.add('active');
+                    } else {
+                        conteudo.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+
+
+    </script>
+    
+    <script src="scripts.js"></script>
+
+</body>
+</html>

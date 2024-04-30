@@ -1,0 +1,119 @@
+.calculator {
+    width: 300px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.calculator input[type="number"] {
+    width: 90%;
+    height: 40px;
+    margin: 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.calculator input[type="button"] {
+    width: 100%;
+    height: 40px;
+    margin: 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+button, .tns {
+    padding: 5px 10px;
+    background-color: #53c924;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 100%;
+}
+
+button:hover, .tns:hover {
+    background-color: #16a522;
+}
+
+#additional-buttons {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 600px; /* Largura do popup */
+    max-width: 80%; /* Largura máxima do popup */
+}
+
+header {
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+}
+
+header nav a {
+    color: rgb(10, 10, 10);
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: all 0.5s ease;
+    font-size: 45px;
+    border: 1px solid #ccc; /* Adiciona uma borda de 1px sólida cinza */
+    border-radius: 5px; /* Adiciona cantos arredondados à borda */
+    display: inline-block;
+}
+
+header nav a:hover {
+    background-color: #31af26;
+}
+
+main {
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+/* Estilo para o conteúdo de cada menu */
+.conteudo {
+    display: none;
+}
+
+.conteudo.active {
+    display: block;
+}
+
+.border-div-main {
+    border: 2px solid #000; /* largura, estilo e cor da borda */
+    padding: 20px; /* opcional: adicione um preenchimento interno para melhor visualização */
+    width: block;
+}
+#areaDeTexto {
+    width: 100%;
+}
